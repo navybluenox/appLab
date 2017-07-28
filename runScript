@@ -41,8 +41,8 @@ case $1 in
         ${thisScript} --c $2
         ;;
     * )
+        echo "test : \""$1"\""
         ${thisScript} --a "\""$1"\""
-        echo "test : "&"\""$1"\""
         ;;
 esac
 
