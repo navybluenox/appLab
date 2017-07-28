@@ -1,6 +1,6 @@
 #!/bin/bash
 
-folderPath = $1
+folderPath=$1
 
 echo "pull files"
 cd ~/${folderPath}

@@ -1,9 +1,10 @@
 #!/bin/bash
 
 folderPath=$1
+sourceFolder=$2
 
-sourceFolder=${folderPath}"/ts"
-outputFolder=${folderPath}"/ts_compiled"
+inputFolder=${sourceFolder}"/ts"
+outputFolder=${sourceFolder}"/ts_compiled"
 
 echo "compile typescript files"
 
@@ -12,6 +13,6 @@ rm -f *
 
 cd ~/${folderPath}
 
-tsc ./${sourceFolder}/* --outDir ./${outputFolder}
+tsc ./${inputFolder}/* --outDir ./${outputFolder}
 
 cd ~
