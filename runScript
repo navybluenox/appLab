@@ -41,7 +41,7 @@ case $1 in
         ${thisScript} --c $2
         ;;
     * )
-        ${thisScript} --a $1
+        ${thisScript} --a "\""$1"\""
         ;;
 esac
 
