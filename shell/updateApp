@@ -1,7 +1,6 @@
 #!/bin/bash
 
-folderPath="appLab"
-commitFolder="dist"
+folderPath=$1
 
 echo "update app"
 

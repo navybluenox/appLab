@@ -1,9 +1,9 @@
 #!/bin/bash
 
-folderPath="appLab"
+folderPath=$1
 
-sourceFolder="src/ts"
-outputFolder="src/ts_compiled"
+sourceFolder=${folderPath}"/ts"
+outputFolder=${folderPath}"/ts_compiled"
 
 echo "compile typescript files"
 

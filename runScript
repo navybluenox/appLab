@@ -1,0 +1,46 @@
+#!/bin/bash
+
+folderPath="appLab"
+thisScript=$(cd $(dirname $0);pwd)/$(basename $0)
+comment=""
+
+scriptFolder="shell"
+sourceFolder="src"
+distFolder="dist"
+
+tsComplieScript="tsCompile"
+distScript="makeDist"
+updateAppScript="updateApp"
+commitScript="commit"
+pullScript="pull"
+
+cd ~/${folderPath}
+
+case $1 in
+    --t )
+        ./${scriptFolder}/${tsComplieScript} ${folderPath}
+        ;;
+    --d )
+        ./${scriptFolder}/${distScript} ${folderPath} ${sourceFolder} ${distFolder}
+        ;;
+    --u )
+        ./${scriptFolder}/${updateAppScript} ${folderPath}
+        ;;
+    --c )
+        ./${scriptFolder}/${commitScript} ${folderPath} $2
+        ;;
+    --p )
+        ./${scriptFolder}/${pullScript} ${folderPath}
+        ;;
+    --a )
+        ${thisScript} --t $1
+        ${thisScript} --d $1
+        ${thisScript} --u $1
+        ${thisScript} --c $1
+        ;;
+    * )
+        ${thisScript} --a $1
+        ;;
+esac
+
+

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-folderPath="appLab"
-sourceFolder="src"
-commitFolder="dist"
+folderPath=$1
+sourceFolder=$2
+distFolder=$3
 
 echo "make dist"
 
-cd ~/${folderPath}/${commitFolder}
+cd ~/${folderPath}/${distFolder}
 rm -f *
 
 for fileKind in css html ts_compiled gas
@@ -17,13 +17,13 @@ do
         originalFile=~/${folderPath}/${sourceFolder}/${fileKind}/${file}
         case ${fileKind} in
             css )
-                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file/.css/.html}
+                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.css/.html}
                 ;;
             ts_compiled )
-                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file/.js/.html}
+                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.js/.html}
                 ;;
             *)
-                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file}
+                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file}
                 ;;
         esac
 
