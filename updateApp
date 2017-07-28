@@ -1,8 +1,7 @@
 #!/bin/bash
 
 folderPath="appLab"
-sourceFolder="src"
-commitFolder="commitFiles"
+commitFolder="dist"
 
 echo "update app"
 
