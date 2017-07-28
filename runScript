@@ -33,13 +33,13 @@ case $1 in
         ./${scriptFolder}/${pullScript} ${folderPath}
         ;;
     --a )
-        ${thisScript} --t $2
-        ${thisScript} --d $2
-        ${thisScript} --u $2
-        ${thisScript} --c $2
+        ${thisScript} --t "\"$2\""
+        ${thisScript} --d "\"$2\""
+        ${thisScript} --u "\"$2\""
+        ${thisScript} --c "\"$2\""
         ;;
     * )
-        ${thisScript} --a $1
+        ${thisScript} --a "\"$1\""
         ;;
 esac
 
