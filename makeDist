@@ -1,0 +1,43 @@
+#!/bin/bash
+
+folderPath="appLab"
+sourceFolder="src"
+commitFolder="dist"
+
+echo "make dist"
+
+cd ~/${folderPath}/${commitFolder}
+rm -f *
+
+for fileKind in css html ts_compiled gas
+do
+    cd ~/${folderPath}/${sourceFolder}/${fileKind}
+    for file in $(ls)
+    do
+        originalFile=~/${folderPath}/${sourceFolder}/${fileKind}/${file}
+        case ${fileKind} in
+            css )
+                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file/.css/.html}
+                ;;
+            ts_compiled )
+                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file/.js/.html}
+                ;;
+            *)
+                newFile=~/${folderPath}/${commitFolder}/${fileKind}_${file}
+                ;;
+        esac
+
+        cp -f ${originalFile} ${newFile}
+
+        case ${fileKind} in
+            ts_compiled )
+                echo -e "\n</script>" >> ${newFile}
+                sed -i -e "1i <script>" ${newFile}
+                ;;
+            css )
+                echo -e "\n</style>" >> ${newFile}
+                sed -i -e "1i <style>" ${newFile}
+                ;;
+        esac
+    done
+done

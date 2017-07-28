@@ -1,0 +1,10 @@
+#!/bin/bash
+
+folderPath="appLab"
+sourceFolder="src"
+commitFolder="commitFiles"
+
+echo "update app"
+
+cd ~/${folderPath}
+gapps upload

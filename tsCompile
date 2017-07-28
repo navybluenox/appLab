@@ -1,0 +1,17 @@
+#!/bin/bash
+
+folderPath="appLab"
+
+sourceFolder="src/ts"
+outputFolder="src/ts_compiled"
+
+echo "compile typescript files"
+
+cd ~/${folderPath}/${outputFolder}
+rm -f *
+
+cd ~/${folderPath}
+
+tsc ./${sourceFolder}/* --outDir ./${outputFolder}
+
+cd ~
