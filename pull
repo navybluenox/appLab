@@ -1,0 +1,7 @@
+#!/bin/bash
+
+folderPath = "appLab"
+
+echo "pull files"
+cd ~/${folderPath}
+git pull

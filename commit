@@ -1,0 +1,15 @@
+#!/bin/bash
+
+folderPath="appLab"
+distScript="makeDist"
+updateAppScript="updateApp"
+
+echo "commit files"
+cd ~/${folderPath}
+
+./${distScript}
+./${updateAppScript}
+
+git add .
+git commit -m "\"$1\""
+git push
