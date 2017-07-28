@@ -1,8 +1,10 @@
 #!/bin/bash
 
+echo "\$1"$1
+echo "\$2"$2
+
 folderPath="appLab"
 thisScript=$(cd $(dirname $0);pwd)/$(basename $0)
-comment=""
 
 scriptFolder="shell"
 sourceFolder="src"
