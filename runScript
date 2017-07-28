@@ -33,10 +33,10 @@ case $1 in
         ./${scriptFolder}/${pullScript} ${folderPath}
         ;;
     --a )
-        ${thisScript} --t $1
-        ${thisScript} --d $1
-        ${thisScript} --u $1
-        ${thisScript} --c $1
+        ${thisScript} --t $2
+        ${thisScript} --d $2
+        ${thisScript} --u $2
+        ${thisScript} --c $2
         ;;
     * )
         ${thisScript} --a $1
