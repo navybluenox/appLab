@@ -1,12 +1,15 @@
 var startPageName = "index";
 
+function _debug(){
+    
+}
+
 function doGet(request) {
   return HtmlService.createTemplateFromFile("html_" + startPageName)
       .evaluate()
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
-      .setTitle("JIMシステム_forJIMs");
+      .setTitle("AppLab");
 }
-
 
 function loadfun(funName,_arguments){
     var fun = ThisApp;
@@ -26,7 +29,7 @@ function updateFileToDrive(fileId, content){
     DriveApp.getFileById(fileId).setContent(content);
 }
 
-function loadFileFromDrive(fileId,charEnc){
+function loadTextFileFromDrive(fileId,charEnc){
     if(charEnc == null)  charEnc = "UTF-8";
     return DriveApp.getFileById(fileId).getBlob().getDataAsString(charEnc);
 }

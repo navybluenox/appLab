@@ -20,7 +20,7 @@ do
                 newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.css/.html}
                 ;;
             ts_compiled )
-                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.js/.html}
+                newFile=~/${folderPath}/${distFolder}/js_${file/.js/.html}
                 ;;
             *)
                 newFile=~/${folderPath}/${distFolder}/${fileKind}_${file}

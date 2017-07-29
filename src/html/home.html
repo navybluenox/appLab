@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>App Lab</title>
+		<meta name="description" content="This is a lab of mine for study gas">
+		<meta name="author" content="navyblue_nox">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		
+        <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<div>
+					<h1>App Lab</h1>
+					<div id="session">
+						<span id="sessionName"></span>
+					</div>
+					<div id="reloadData">
+						<table><tbody>
+							<tr><td style="border-bottom-width:0; padding:0.5ex 0;"><input type="button" value="データをリロード" onclick="_val.server.reloadDataAll()"></td></tr>
+							<tr><td style="border-bottom-width:0; padding:0.5ex 0;"><input type="button" value="データを検索" onclick="_val.pageFun.main.openSearchWindow()"></td></tr>
+						</tbody></table>
+						
+					</div>
+				</div>
+            </header>
+            <main>
+				<div style="overflow:hidden;">
+					<ul class="menubar">
+						<li><a href="#1" onclick='movePage("ftable")'>Fusion Table</a></li>
+						<li><a href="#2" onclick=''>_</a></li>
+						<li><a href="#3" onclick=''>_</a></li>
+						<li><a href="#4" onclick=''>_</a></li>
+						<li><a class="has_sub" href="#5" onclick=''>dropdown ...</a><ul class="menubar_sub">
+							<li><a href="#5-1" onclick=''>sub</a></li>
+						</ul></li>
+					</ul>
+				</div>
+                <div id="content"></div>
+                <div id="modalWindow"></div>
+            </main>
+			<footer>
+				<p>
+					&copy; Copyright  by navyblue_nox
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
