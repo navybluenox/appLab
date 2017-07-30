@@ -38,6 +38,12 @@ case $1 in
         ${thisScript} --u "$2"
         ${thisScript} --c "$2"
         ;;
+    --? )
+        echo "The option code("$1") is invalid"
+        ;;
+    -? )
+        echo "The option code("$1") is invalid"
+        ;;
     * )
         ${thisScript} --a "$1"
         ;;
