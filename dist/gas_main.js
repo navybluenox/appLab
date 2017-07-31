@@ -1,7 +1,8 @@
 var startPageName = "index";
 
 function _debug(){
-    
+    var tables = FusionTables.Table.list();
+    Logger.log(JSON.stringify(tables,null,4));
 }
 
 function doGet(request) {
@@ -24,7 +25,6 @@ function loadfun(funName,_arguments){
     }
 }
 
-
 function updateFileToDrive(fileId, content){
     DriveApp.getFileById(fileId).setContent(content);
 }
@@ -33,8 +33,6 @@ function loadTextFileFromDrive(fileId,charEnc){
     if(charEnc == null)  charEnc = "UTF-8";
     return DriveApp.getFileById(fileId).getBlob().getDataAsString(charEnc);
 }
-
-
 
 function handlePropertiesService(value,type,doKind){
     //value
@@ -80,4 +78,9 @@ function handlePropertiesService(value,type,doKind){
             throw new Error();
     }
     return result;
+}
+
+function outputLogs(comments, option){
+    option = option === undefined ? {"inputTime":true} : option;
+    
 }
