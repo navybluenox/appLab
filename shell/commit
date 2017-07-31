@@ -7,8 +7,8 @@ echo "commit files"
 
 cd ~/${folderPath}
 
-if ! -n "${comment}" ;then
-    comment=$(date +"%Y/%m/%d %p %I:%M:%S")
+if [ ! -n "$comment" ]; then
+    comment=$(date +"%Y/%m/%d %p %I:%M:%S");
 fi
 
 git add .
