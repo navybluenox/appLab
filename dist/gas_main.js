@@ -95,7 +95,7 @@ function outputLogs(comments, option){
     };
     var ranges = sheet.getRange(sheetSize.height+1,1,1,sheetSize.width);
     ranges.setValues([
-        option.inputTime ?  : "",
+        option.inputTime ? "" : "",
     ]);
 }
 
@@ -120,7 +120,7 @@ function dateString(date,template){
     //second : %S 23
     //millisecond : %z 534
     //ampm : %P AM, %p am, %q 午前
-    //other : %n new line, %j JSON type, %O time offset hour, %o time offset minute, %g time offset sign
+    //other : %n new line, %j ISO8601 style, %O time offset hour, %o time offset minute, %g time offset sign
 
     if(date === undefined || date === null) date = new Date();
     template = template === undefined ? "%j" : template;
