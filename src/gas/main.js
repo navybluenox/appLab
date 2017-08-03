@@ -85,6 +85,10 @@ function handlePropertiesService(value,type,doKind){
 
 function outputLogs(comments, option){
     option = option === undefined ? {"inputTime":true} : option;
+    if(Array.isArray(comments)){
+        comments.forEach(function(comment){outputLogs(comment,option)});
+        return;
+    }
 
     var ss = SpreadsheetApp.openById(userConst.logSheet);
     var sheet = ss.getSheets()[0];
@@ -96,6 +100,7 @@ function outputLogs(comments, option){
     var ranges = sheet.getRange(sheetSize.height+1,1,1,sheetSize.width);
     ranges.setValues([
         option.inputTime ? "" : "",
+        comments
     ]);
 }
 
