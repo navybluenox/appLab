@@ -5,7 +5,9 @@ var userConst = {
 
 function _debug(){
     var tables = FusionTables.Table.list();
-    Logger.log(JSON.stringify(tables,null,4));
+    //var str = JSON.stringify(tables,null,4);
+    var str = "test";
+    outputLogs(str);
 }
 
 function doGet(request) {
@@ -93,15 +95,17 @@ function outputLogs(comments, option){
     var ss = SpreadsheetApp.openById(userConst.logSheet);
     var sheet = ss.getSheets()[0];
 
+    var allRangeValues = sheet.getRange(1,1,sheet.getMaxRows(),sheet.getMaxColumns()).getValues();
     var sheetSize = {
-        "height":sheet.getMaxRows(),
-        "width":sheet.getMaxColumns()
+        "height":allRangeValues.map(function(arr){return arr[0]}).findIndex(function(v){return v !== ""}),
+        "width":allRangeValues[0].findIndex(function(v){return v !== ""})
     };
+
     var ranges = sheet.getRange(sheetSize.height+1,1,1,sheetSize.width);
-    ranges.setValues([
+    ranges.setValues([[
         option.inputTime ? "" : "",
         comments
-    ]);
+    ]]);
 }
 
 function clearLogs(option){
