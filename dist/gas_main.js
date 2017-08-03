@@ -97,13 +97,15 @@ function outputLogs(comments, option){
 
     var allRangeValues = sheet.getRange(1,1,sheet.getMaxRows(),sheet.getMaxColumns()).getValues();
     var sheetSize = {
-        "height":allRangeValues.map(function(arr){return arr[0]}).findIndex(function(v){return v !== ""}),
-        "width":allRangeValues[0].findIndex(function(v){return v !== ""})
+        "height":allRangeValues.map(function(arr){return arr[0]}).findIndex(function(v){return v === ""}),
+        "width":allRangeValues[0].findIndex(function(v){return v === ""})
     };
+    if(sheetSize.height === -1)  sheetSize.height = allRangeValues.length;
+    if(sheetSize.width === -1)  sheetSize.width = allRangeValues[0].length;
 
     var ranges = sheet.getRange(sheetSize.height+1,1,1,sheetSize.width);
     ranges.setValues([[
-        option.inputTime ? "" : "",
+        option.inputTime ? dateString(new Date(),"%j") : "",
         comments
     ]]);
 }
