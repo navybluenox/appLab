@@ -5,8 +5,8 @@ var userConst = {
 
 function _debug(){
     var tables = FusionTables.Table.list();
-    //var str = JSON.stringify(tables,null,4);
-    var str = "test";
+    var str = JSON.stringify(tables,null,4);
+    //var str = "test";
     outputLogs(str);
 }
 
