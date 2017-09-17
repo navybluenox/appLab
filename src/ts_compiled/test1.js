@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 /* reactとreact-domの読み込み */
 var React = require("react");
 var ReactDOM = require("react-dom");
@@ -19,7 +19,7 @@ var Index = (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.state = {
             inputValue: '',
-            outputValue: ''
+            outputValue: '',
         };
         _this.handleChange = _this.handleChange.bind(_this);
         _this.handleClick = _this.handleClick.bind(_this);
@@ -27,13 +27,13 @@ var Index = (function (_super) {
     }
     Index.prototype.handleChange = function (e) {
         this.setState({
-            inputValue: e.target.value
+            inputValue: e.target.value,
         });
     };
     Index.prototype.handleClick = function () {
         this.setState({
             inputValue: '',
-            outputValue: this.state.inputValue
+            outputValue: this.state.inputValue,
         });
     };
     Index.prototype.render = function () {
@@ -59,3 +59,4 @@ var Output = function (props) {
     return (React.createElement("div", null, value));
 };
 ReactDOM.render(React.createElement(Index, { hello: "Hello" }), document.querySelector('.content'));
+//# sourceMappingURL=test1.js.map

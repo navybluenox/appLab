@@ -13,6 +13,7 @@ rm -f *
 
 cd ~/${folderPath}
 
-tsc ./${inputFolder}/* --outDir ./${outputFolder}  --jsx react
+#tsc ./${inputFolder}/* --outDir ./${outputFolder}  --jsx react
+tsc
 
 cd ~

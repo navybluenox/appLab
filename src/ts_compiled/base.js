@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 function dateString(date, template) {
     //year : %Y 2017, %y 17
     //month : %m 08, %N _8, %B Octobar, %b Oct
@@ -51,3 +51,4 @@ function dateString(date, template) {
     });
     return template;
 }
+//# sourceMappingURL=base.js.map

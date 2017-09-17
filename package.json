@@ -17,9 +17,15 @@
   },
   "homepage": "https://github.com/navybluenox/appLab#readme",
   "dependencies": {
+    "@types/google-apps-script": "0.0.14",
+    "@types/jquery": "^3.2.12",
     "@types/react": "^15.6.0",
     "@types/react-dom": "^15.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "0.0.14",
+    "@types/node": "^8.0.28"
   }
 }
