@@ -1,3 +1,7 @@
+/* reactとreact-domの読み込み */
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
 function dateString(date:Date=new Date(),template:string="%%j"){
     //year : %Y 2017, %y 17
     //month : %m 08, %N _8, %B Octobar, %b Oct
