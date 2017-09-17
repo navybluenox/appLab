@@ -13,6 +13,7 @@ function sendHttpRequest(para: {method: string, url: string}): Promise<{}>{
 }
 
 function useGAS(funcName:string, argu:any[] = []): Promise<{}>{
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve,reject):any => {
+        google.script.run.myFun();
     });
 }

@@ -14,6 +14,7 @@ function sendHttpRequest(para) {
 function useGAS(funcName, argu) {
     if (argu === void 0) { argu = []; }
     return new Promise(function (resolve, reject) {
+        google.script.run.myFun();
     });
 }
 //# sourceMappingURL=server.js.map
