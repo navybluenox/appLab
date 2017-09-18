@@ -9,7 +9,7 @@ echo "make dist"
 cd ~/${folderPath}/${distFolder}
 rm -f *
 
-for fileKind in css html ts_compiled gas
+for fileKind in css html ts_compiled gas_compiled
 do
     cd ~/${folderPath}/${sourceFolder}/${fileKind}
     for file in $(ls)
@@ -21,6 +21,9 @@ do
                 ;;
             ts_compiled )
                 newFile=~/${folderPath}/${distFolder}/js_${file/.js/.html}
+                ;;
+            gas_compiled )
+                newFile=~/${folderPath}/${distFolder}/gas_${file/.js/.html}
                 ;;
             *)
                 newFile=~/${folderPath}/${distFolder}/${fileKind}_${file}
