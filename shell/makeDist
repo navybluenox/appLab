@@ -14,33 +14,35 @@ do
     cd ~/${folderPath}/${sourceFolder}/${fileKind}
     for file in $(ls)
     do
-        originalFile=~/${folderPath}/${sourceFolder}/${fileKind}/${file}
-        case ${fileKind} in
-            css )
-                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.css/.html}
-                ;;
-            ts_compiled )
-                newFile=~/${folderPath}/${distFolder}/js_${file/.js/.html}
-                ;;
-            gas_compiled )
-                newFile=~/${folderPath}/${distFolder}/gas_${file/.js/.html}
-                ;;
-            *)
-                newFile=~/${folderPath}/${distFolder}/${fileKind}_${file}
-                ;;
-        esac
+        if [[ ${file} != *.*.map ]]; then
+            originalFile=~/${folderPath}/${sourceFolder}/${fileKind}/${file}
+            case ${fileKind} in
+                css )
+                    newFile=~/${folderPath}/${distFolder}/${fileKind}_${file/.css/.html}
+                    ;;
+                ts_compiled )
+                    newFile=~/${folderPath}/${distFolder}/js_${file/.js/.html}
+                    ;;
+                gas_compiled )
+                    newFile=~/${folderPath}/${distFolder}/gas_${file}
+                    ;;
+                *)
+                    newFile=~/${folderPath}/${distFolder}/${fileKind}_${file}
+                    ;;
+            esac
 
-        cp -f ${originalFile} ${newFile}
+            cp -f ${originalFile} ${newFile}
 
-        case ${fileKind} in
-            ts_compiled )
-                echo -e "\n</script>" >> ${newFile}
-                sed -i -e "1i <script>" ${newFile}
-                ;;
-            css )
-                echo -e "\n</style>" >> ${newFile}
-                sed -i -e "1i <style>" ${newFile}
-                ;;
-        esac
+            case ${fileKind} in
+                ts_compiled )
+                    echo -e "\n</script>" >> ${newFile}
+                    sed -i -e "1i <script>" ${newFile}
+                    ;;
+                css )
+                    echo -e "\n</style>" >> ${newFile}
+                    sed -i -e "1i <style>" ${newFile}
+                    ;;
+            esac
+        fi
     done
 done
