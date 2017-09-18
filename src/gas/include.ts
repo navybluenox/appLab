@@ -1,5 +1,7 @@
+import * as GoogleAppsScript from 'google-apps-script';
+
 if (!Array.prototype.findIndex) {
-  Array.prototype.findIndex = function(predicate) {
+  Array.prototype.findIndex = function(predicate:any) {
     if (this === null) {
       throw new TypeError('Array.prototype.findIndex called on null or undefined');
     }

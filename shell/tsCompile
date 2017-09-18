@@ -3,17 +3,19 @@
 folderPath=$1
 sourceFolder=$2
 
-inputFolder=${sourceFolder}"/ts"
-outputFolder=${sourceFolder}"/ts_compiled"
+for name in ts gas
+do
+    inputFolder=${sourceFolder}"/"${name}
+    outputFolder=${sourceFolder}"/"${name}"_compiled"
 
-echo "compile typescript files"
+    echo "compile typescript files of folder@"${name}
 
-cd ~/${folderPath}/${outputFolder}
-rm -f *
+    cd ~/${folderPath}/${outputFolder}
+    rm -f *
 
-cd ~/${folderPath}
-
-#tsc ./${inputFolder}/* --outDir ./${outputFolder}  --jsx react
-tsc
+    cd ~/${folderPath}/${inputFolder}
+pwd
+    tsc -p ./
+done
 
 cd ~

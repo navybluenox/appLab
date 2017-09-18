@@ -1,5 +1,7 @@
-var startPageName = "index";
-var userConst = {
+import * as GoogleAppsScript from 'google-apps-script';
+
+let startPageName = "index";
+let userConst = {
     logSheet:"1rR_rj2plSj9rB5RhWJHDHST9Tsiz6GaB0d-UngQgss8"
 };
 
@@ -10,14 +12,14 @@ function _debug(){
     outputLogs(str);
 }
 
-function doGet(request) {
+function doGet(request:any) {
   return HtmlService.createTemplateFromFile("html_" + startPageName)
       .evaluate()
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
       .setTitle("AppLab");
 }
 
-function loadfun(funName,_arguments){
+function loadfun(funName:string,_arguments:Array<any>){
     var fun = ThisApp;
     funName.split(".").forEach(function(key){
         fun = fun[key] || {}
@@ -30,20 +32,19 @@ function loadfun(funName,_arguments){
     }
 }
 
-function updateFileToDrive(fileId, content){
+function updateFileToDrive(fileId:string, content:string){
     DriveApp.getFileById(fileId).setContent(content);
 }
 
-function loadTextFileFromDrive(fileId,charEnc){
-    if(charEnc == null)  charEnc = "UTF-8";
+function loadTextFileFromDrive(fileId:string,charEnc:string = "UTF-8"){
     return DriveApp.getFileById(fileId).getBlob().getDataAsString(charEnc);
 }
 
-function handlePropertiesService(value,type,doKind){
+function handlePropertiesService(value:any,type:string,doKind:string){
     //value
     //set : {[names]:[values]}, get : [[names]], delete : [[names]]
-    var properties;
-    var result;
+    var properties:any;
+    var result:any;
     switch(type){
         case "user":
             properties = PropertiesService.getUserProperties();
@@ -64,7 +65,7 @@ function handlePropertiesService(value,type,doKind){
                 result = properties.getProperties();
             }else{
                 result = {};
-                value.forEach(function(v){
+                value.forEach(function(v:string){
                     result[v] = (properties.getProperty(v) === undefined ? null : properties.getProperty(v));
                 });
             }
@@ -73,7 +74,7 @@ function handlePropertiesService(value,type,doKind){
             if(value.length === 0){
                 properties.deleteAllProperties();
             }else{
-                value.forEach(function(v){
+                value.forEach(function(v:string){
                     properties.deleteProperty(v);
                 });
             }
@@ -85,7 +86,7 @@ function handlePropertiesService(value,type,doKind){
     return result;
 }
 
-function outputLogs(comments, option){
+function outputLogs(comments:string, option:{[key:string]:string|boolean} = {"inputTime":true}){
     option = option === undefined ? {"inputTime":true} : option;
     if(Array.isArray(comments)){
         comments.forEach(function(comment){outputLogs(comment,option)});
@@ -110,8 +111,7 @@ function outputLogs(comments, option){
     ]]);
 }
 
-function clearLogs(option){
-    option = option === undefined ? {} : option;
+function clearLogs(option:{[key:string]:string|boolean} = {}){
     var rowStartIndex = 1;  //exclude header
 
     var ss = SpreadsheetApp.openById(userConst.logSheet);
@@ -121,7 +121,7 @@ function clearLogs(option){
     ranges.clear();
 }
 
-function dateString(date,template){
+function dateString(date:Date,template:string = "%j"){
     //year : %Y 2017, %y 17
     //month : %m 08, %N _8, %B Octobar, %b Oct
     //date : %d 01, %e _1
@@ -133,16 +133,13 @@ function dateString(date,template){
     //ampm : %P AM, %p am, %q 午前
     //other : %n new line, %j ISO8601 style, %O time offset hour, %o time offset minute, %g time offset sign
 
-    if(date === undefined || date === null) date = new Date();
-    template = template === undefined ? "%j" : template;
-
     var dVal = {
         "year":date.getFullYear(),"month":date.getMonth(),"date":date.getDate(),"day":date.getDay(),
         "hour":date.getHours(),"minute":date.getMinutes(),"second":date.getSeconds(),"millisecond":date.getMilliseconds(),"offsetTimeAbs":Math.abs(date.getTimezoneOffset()),"offsetSign":-date.getTimezoneOffset()<0?-1:+1
     };
 
-    var fillD = function(str,fillStr,digit){
-        str = ""+str;
+    var fillD = function(value:number,fillStr:string,digit:number = 2){
+        var str:string = "" + value;
         digit = digit === undefined ? 2 : digit;
         for(var i=0,l=digit-str.length;i<l;i++){
             str = "" + fillStr + str;
@@ -150,23 +147,27 @@ function dateString(date,template){
         return str;
     };
 
-    var pattern = {
+    interface Ipattern {
+        [key:string] : string|string[]
+    }
+
+    let pattern: Ipattern = {
         "%Y":""+dVal.year,"%y":""+dVal.year%100,
-        "%m":fillD(dVal.month+1,0),"%N":fillD(dVal.month+1," "),"%B":["January","February","March","April","May","June","July","August","September","October","November","December"][dVal.month],"%b":["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"][dVal.month],
-        "%d":fillD(dVal.date,0),"%e":fillD(dVal.date," "),
+        "%m":fillD(dVal.month+1,"0"),"%N":fillD(dVal.month+1," "),"%B":["January","February","March","April","May","June","July","August","September","October","November","December"][dVal.month],"%b":["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"][dVal.month],
+        "%d":fillD(dVal.date,"0"),"%e":fillD(dVal.date," "),
         "%a":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"][dVal.day],"%A":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][dVal.day],"%W":["月","火","水","木","金","土","日"][dVal.day],"%w":"" + dVal.day,
-        "%H":fillD(dVal.hour,0),"%I":fillD(dVal.hour," "),"%h":fillD(dVal.hour%12,0),"%i":fillD(dVal.hour%12," "),
-        "%M":fillD(dVal.minute,0),
-        "%S":fillD(dVal.second,0),
-        "%z":fillD(dVal.millisecond,0,3),
+        "%H":fillD(dVal.hour,"0"),"%I":fillD(dVal.hour," "),"%h":fillD(dVal.hour%12,"0"),"%i":fillD(dVal.hour%12," "),
+        "%M":fillD(dVal.minute,"0"),
+        "%S":fillD(dVal.second,"0"),
+        "%z":fillD(dVal.millisecond,"0",3),
         "%P":dVal.hour<12?"AM":"PM","%p":dVal.hour<12?"am":"pm","%q":dVal.hour<12?"午前":"午後",
-        "%n":"\n","%O":fillD((dVal.offsetTimeAbs-dVal.offsetTimeAbs%60)/60,0),"%o":fillD(dVal.offsetTimeAbs%60,0),"%g":dVal.offsetSign<0?"-":"+", 
+        "%n":"\n","%O":fillD((dVal.offsetTimeAbs-dVal.offsetTimeAbs%60)/60,"0"),"%o":fillD(dVal.offsetTimeAbs%60,"0"),"%g":dVal.offsetSign<0?"-":"+", 
         "%j":["%Y-%m-%dT%H:%M:%S.%z%g%O:%o"]
     };
 
 
     Object.keys(pattern).forEach(function(searchStr){
-        var setStr = pattern[searchStr];
+        var setStr:string|string[] = pattern[searchStr];
         var reg = new RegExp(searchStr,"g");
 
         if(reg.test(template)){
