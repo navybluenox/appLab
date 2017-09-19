@@ -6,5 +6,7 @@ import * as jQuey from 'jquery';
 /// <reference path="ts/onOpen.tsx" />
 
 module app.page.index {
-    
+    export function hogehoge(){
+        
+    }
 }
