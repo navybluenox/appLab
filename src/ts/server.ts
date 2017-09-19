@@ -15,7 +15,7 @@ function sendHttpRequest(para: {method: string, url: string}): Promise<{}>{
 function sendGASRequest(funcName:string, argu:any[] = [], userObj:Object|null = null): Promise<{}>{
     return new Promise((resolve:Function,reject:Function):any => {
         google.script.run
-        .withSuccessHandler((v:any,o:Object) => {
+        .withSuccessHandler((v:string,o:Object) => {
             resolve(JSON.parse(v),o);
         })
         .withFailureHandler((e:Error,o:Object) => {
