@@ -19,17 +19,17 @@ function doGet(request:any) {
       .setTitle("AppLab");
 }
 
-function loadfun(funName:string,_arguments:Array<any>){
-    var fun = ThisApp;
-    funName.split(".").forEach(function(key){
-        fun = fun[key] || {}
+function getGASRequest(funName:string,_arguments:any[]){
+    let funNow: ScriptFuncions = ThisApp;
+    var fun:Function = () => {};
+    funName.split(".").forEach((key:string) => {
+        if(funNow[key] instanceof ScriptFuncions){
+            funNow = <ScriptFuncions>funNow[key];
+        }else{
+            fun = <Function>funNow[key];
+        }
     });
-    if(_arguments === undefined){
-        return JSON.stringify(fun.apply(undefined));
-    }else{
-        if(!Array.isArray(_arguments))  _arguments = [_arguments];
-        return JSON.stringify(fun.apply(undefined,_arguments));
-    }
+    return JSON.stringify(fun.apply(undefined,_arguments));
 }
 
 function updateFileToDrive(fileId:string, content:string){

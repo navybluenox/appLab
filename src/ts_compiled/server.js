@@ -11,10 +11,19 @@ function sendHttpRequest(para) {
     req.send();
     return p;
 }
-function useGAS(funcName, argu) {
+function sendGASRequest(funcName, argu, userObj) {
     if (argu === void 0) { argu = []; }
+    if (userObj === void 0) { userObj = null; }
     return new Promise(function (resolve, reject) {
-        google.script.run.myFun();
+        google.script.run
+            .withSuccessHandler(function (v, o) {
+            resolve(JSON.parse(v), o);
+        })
+            .withFailureHandler(function (e, o) {
+            reject(e, o);
+        })
+            .withUserObject(userObj)
+            .getGASRequest(funcName, argu);
     });
 }
 //# sourceMappingURL=server.js.map

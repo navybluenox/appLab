@@ -16,19 +16,18 @@ function doGet(request) {
         .setSandboxMode(HtmlService.SandboxMode.IFRAME)
         .setTitle("AppLab");
 }
-function loadfun(funName, _arguments) {
-    var fun = ThisApp;
+function getGASRequest(funName, _arguments) {
+    var funNow = ThisApp;
+    var fun = function () { };
     funName.split(".").forEach(function (key) {
-        fun = fun[key] || {};
+        if (funNow[key] instanceof ScriptFuncions) {
+            funNow = funNow[key];
+        }
+        else {
+            fun = funNow[key];
+        }
     });
-    if (_arguments === undefined) {
-        return JSON.stringify(fun.apply(undefined));
-    }
-    else {
-        if (!Array.isArray(_arguments))
-            _arguments = [_arguments];
-        return JSON.stringify(fun.apply(undefined, _arguments));
-    }
+    return JSON.stringify(fun.apply(undefined, _arguments));
 }
 function updateFileToDrive(fileId, content) {
     DriveApp.getFileById(fileId).setContent(content);
