@@ -20,6 +20,9 @@ case $1 in
     --t )
         ./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder}
         ;;
+    --tn )
+        ./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder} --noEmit
+        ;;
     --d )
         ./${scriptFolder}/${distScript} ${folderPath} ${sourceFolder} ${distFolder}
         ;;

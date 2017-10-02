@@ -2,6 +2,7 @@
 
 folderPath=$1
 sourceFolder=$2
+option=$3
 
 for name in ts gas
 do
@@ -14,7 +15,7 @@ do
     rm -f *
 
     cd ~/${folderPath}/${inputFolder}
-    tsc -p ./
+    tsc -p ./ ${option}
 done
 
 cd ~
