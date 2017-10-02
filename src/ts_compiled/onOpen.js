@@ -9,5 +9,4 @@ var app;
         para.huga = huga;
     })(para = app.para || (app.para = {}));
 })(app || (app = {}));
-var _val;
 //# sourceMappingURL=onOpen.js.map

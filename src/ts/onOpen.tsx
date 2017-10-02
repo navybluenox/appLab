@@ -9,14 +9,3 @@ module app.para {
         
     }
 }
-
-var _val:{
-    pageFun:{
-        [key:string]:{
-            [key1:string]:Function
-        }
-    }[],
-    isReady:boolean
-};
-
-
