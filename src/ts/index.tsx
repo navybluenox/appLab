@@ -3,10 +3,5 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as jQuey from 'jquery';
 
-/// <reference path="ts/onOpen.tsx" />
+import * as page from './page';
 
-module app.page.index {
-    export function hogehoge(){
-        
-    }
-}
