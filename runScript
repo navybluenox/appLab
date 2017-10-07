@@ -38,7 +38,7 @@ case $1 in
     --a )
         ${thisScript} --t "$2"
         ${thisScript} --d "$2"
-        ${thisScript} --u "$2"
+        #${thisScript} --u "$2"
         ${thisScript} --c "$2"
         ;;
     --? )
