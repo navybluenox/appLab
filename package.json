@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "@types/google-apps-script": "0.0.14",
-    "@types/node": "^8.0.28"
+    "@types/node": "^8.0.28",
+    "gulp": "^3.9.1",
+    "webpack": "^3.6.0"
   }
 }

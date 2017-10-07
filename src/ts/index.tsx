@@ -1,7 +1,14 @@
-/* reactとreact-domの読み込み */
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as jQuey from 'jquery';
+import * as Base from './base';
+import * as Page from './page';
 
-import * as page from './page';
+export class pageProcess_index implements Base.pageProcess{
+    onload(){
 
+    }
+    onunload(){
+
+    }
+    hogehoge(){
+        
+    }
+}
