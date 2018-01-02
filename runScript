@@ -17,6 +17,9 @@ pullScript="pull"
 cd ~/${folderPath}
 
 case $1 in
+    --g )
+        gulp
+        ;;
     --t )
         ./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder}
         ;;
@@ -36,8 +39,7 @@ case $1 in
         ./${scriptFolder}/${pullScript} ${folderPath}
         ;;
     --a )
-        ${thisScript} --t "$2"
-        ${thisScript} --d "$2"
+        ${thisScript} --g "$2"
         #${thisScript} --u "$2"
         ${thisScript} --c "$2"
         ;;

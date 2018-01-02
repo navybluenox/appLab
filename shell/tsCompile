@@ -4,18 +4,24 @@ folderPath=$1
 sourceFolder=$2
 option=$3
 
-for name in ts gas
-do
-    inputFolder=${sourceFolder}"/"${name}
-    outputFolder=${sourceFolder}"/"${name}"_compiled"
+echo "compile typescript files at webpack"
 
-    echo "compile typescript files of folder@"${name}
+cd ~/${folderPath}
+webpack
 
-    cd ~/${folderPath}/${outputFolder}
-    rm -f *
 
-    cd ~/${folderPath}/${inputFolder}
-    tsc -p ./ ${option}
-done
+#for name in ts gas
+#do
+#    inputFolder=${sourceFolder}"/"${name}
+#    outputFolder=${sourceFolder}"/"${name}"_compiled"
+
+#    echo "compile typescript files of folder@"${name}
+
+#    cd ~/${folderPath}/${outputFolder}
+#    rm -f *
+
+#    cd ~/${folderPath}/${inputFolder}
+#    tsc -p ./ ${option}
+#done
 
 cd ~
