@@ -13,7 +13,7 @@ gulp.task('clean',() => {
 });
 
 gulp.task('webpack',() => {
-    return webpackStream(webpackConfig,webpack)
+    return webpackStream(webpackConfig/*,webpack*/)
         .pipe(gulp.dest('./dist'));
 });
 

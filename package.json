@@ -29,6 +29,7 @@
     "@types/node": "^8.0.28",
     "awesome-typescript-loader": "^3.2.3",
     "del": "^3.0.0",
+    "gas-webpack-plugin": "^0.2.1",
     "gulp": "^3.9.1",
     "gulp-debug": "^3.1.0",
     "gulp-footer": "^1.0.5",

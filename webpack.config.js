@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require("webpack");
+var GasPlugin = require("gas-webpack-plugin");
 
 let config = {
     entry: {
@@ -25,7 +26,10 @@ let config = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
-    }
+    },
+    plugins: [
+        //new GasPlugin()
+    ]
 };
 
 module.exports = config;
