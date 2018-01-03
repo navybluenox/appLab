@@ -5,23 +5,6 @@ export let userConst = {
     logSheet:"1rR_rj2plSj9rB5RhWJHDHST9Tsiz6GaB0d-UngQgss8"
 };
 
-export function _debug1(){
-    Logger.log("hogehoge");
-}
-
-export function _debug(){
-    var tables = FusionTables.Table.list();
-    var str = JSON.stringify(tables,null,4);
-    //var str = "test";
-    outputLogs(str);
-}
-
-export function doGet(request:any) {
-  return HtmlService.createTemplateFromFile("html_" + startPageName)
-      .evaluate()
-      .setSandboxMode(HtmlService.SandboxMode.IFRAME)
-      .setTitle("AppLab");
-}
 
 export function getGASRequest(funName:string,_arguments:any[]){
     let funNow: ScriptFuncions = ThisApp;
