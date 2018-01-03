@@ -1,3 +1,3 @@
-import * as Hello from './hello'
+import * as Index from './index'
 
-Hello.hello();
+

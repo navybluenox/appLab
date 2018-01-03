@@ -1,3 +1,9 @@
-import * as Hello1 from './hello'
+import * as GoogleAppsScript from 'google-apps-script';
+import * as Main from './main'
+import * as _ from './include'
 
-Hello1.hello1();
+var main = Main;
+
+main._debug();
+
+

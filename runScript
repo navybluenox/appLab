@@ -21,7 +21,8 @@ case $1 in
         gulp
         ;;
     --t )
-        ./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder}
+        ${thisScript} --g "$2"
+        #./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder}
         ;;
     --tn )
         ./${scriptFolder}/${tsComplieScript} ${folderPath} ${sourceFolder} --noEmit
@@ -40,7 +41,7 @@ case $1 in
         ;;
     --a )
         ${thisScript} --g "$2"
-        #${thisScript} --u "$2"
+        ${thisScript} --u "$2"
         ${thisScript} --c "$2"
         ;;
     --? )

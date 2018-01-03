@@ -1,25 +1,29 @@
 import * as GoogleAppsScript from 'google-apps-script';
 
-let startPageName = "index";
-let userConst = {
+export let startPageName = "index";
+export let userConst = {
     logSheet:"1rR_rj2plSj9rB5RhWJHDHST9Tsiz6GaB0d-UngQgss8"
 };
 
-function _debug(){
+export function _debug1(){
+    Logger.log("hogehoge");
+}
+
+export function _debug(){
     var tables = FusionTables.Table.list();
     var str = JSON.stringify(tables,null,4);
     //var str = "test";
     outputLogs(str);
 }
 
-function doGet(request:any) {
+export function doGet(request:any) {
   return HtmlService.createTemplateFromFile("html_" + startPageName)
       .evaluate()
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
       .setTitle("AppLab");
 }
 
-function getGASRequest(funName:string,_arguments:any[]){
+export function getGASRequest(funName:string,_arguments:any[]){
     let funNow: ScriptFuncions = ThisApp;
     var fun:Function = () => {};
     funName.split(".").forEach((key:string) => {
@@ -32,15 +36,15 @@ function getGASRequest(funName:string,_arguments:any[]){
     return JSON.stringify(fun.apply(undefined,_arguments));
 }
 
-function updateFileToDrive(fileId:string, content:string){
+export function updateFileToDrive(fileId:string, content:string){
     DriveApp.getFileById(fileId).setContent(content);
 }
 
-function loadTextFileFromDrive(fileId:string,charEnc:string = "UTF-8"){
+export function loadTextFileFromDrive(fileId:string,charEnc:string = "UTF-8"){
     return DriveApp.getFileById(fileId).getBlob().getDataAsString(charEnc);
 }
 
-function handlePropertiesService(value:any,type:string,doKind:string){
+export function handlePropertiesService(value:any,type:string,doKind:string){
     //value
     //set : {[names]:[values]}, get : [[names]], delete : [[names]]
     var properties:any;
@@ -86,7 +90,7 @@ function handlePropertiesService(value:any,type:string,doKind:string){
     return result;
 }
 
-function outputLogs(comments:string, option:{[key:string]:string|boolean} = {"inputTime":true}){
+export function outputLogs(comments:string, option:{[key:string]:string|boolean} = {"inputTime":true}){
     option = option === undefined ? {"inputTime":true} : option;
     if(Array.isArray(comments)){
         comments.forEach(function(comment){outputLogs(comment,option)});
@@ -111,7 +115,7 @@ function outputLogs(comments:string, option:{[key:string]:string|boolean} = {"in
     ]]);
 }
 
-function clearLogs(option:{[key:string]:string|boolean} = {}){
+export function clearLogs(option:{[key:string]:string|boolean} = {}){
     var rowStartIndex = 1;  //exclude header
 
     var ss = SpreadsheetApp.openById(userConst.logSheet);
@@ -121,7 +125,7 @@ function clearLogs(option:{[key:string]:string|boolean} = {}){
     ranges.clear();
 }
 
-function dateString(date:Date,template:string = "%j"){
+export function dateString(date:Date,template:string = "%j"){
     //year : %Y 2017, %y 17
     //month : %m 08, %N _8, %B Octobar, %b Oct
     //date : %d 01, %e _1
